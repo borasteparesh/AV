@@ -1,10 +1,27 @@
 {
-    "name": "sampleconnect",
-    "version": "0.0.0",
-    "description": "sampleconnect paresh",
-    "dependencies": {
-        "socket.io": "latest",
-        "express": "latest"
-    },
-    "author": "paresh"
+  "name": "sampleconnect",
+  "version": "0.0.0",
+  "description": "sampleconnect paresh",
+  "dependencies": {
+    "socket.io": "latest",
+    "express": "latest"
+  },
+  "author": "paresh",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borasteparesh/AV.git"
+  },
+  "keywords": [
+    "borasteparesh"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/borasteparesh/AV/issues"
+  },
+  "homepage": "https://github.com/borasteparesh/AV#readme"
 }
