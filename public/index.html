@@ -1,0 +1,19 @@
+<html>
+    <head>
+       
+    </head>
+
+    <body>
+   
+        <video id="localVideo" autoplay muted style="width:40%;"></video>
+        <video id="remoteVideo" autoplay style="width:40%;"></video>
+
+        <br />
+		<input id="clients">
+        <input type="button" id="doCall" onclick="doCall()" value="Call"></input>
+		 
+       <script src="js/adapter.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+         <script src="js/MainHandle.js"></script>
+    </body>
+</html>

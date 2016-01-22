@@ -1,0 +1,10 @@
+{
+    "name": "sampleconnect",
+    "version": "0.0.0",
+    "description": "sampleconnect paresh",
+    "dependencies": {
+        "socket.io": "latest",
+        "express": "latest"
+    },
+    "author": "paresh"
+}
