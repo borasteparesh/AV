@@ -1,0 +1,67 @@
+<html>
+<head>
+<style>
+
+video.abso {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    z-index: -1;
+}
+video.bgvid {
+    position: absolute;
+    z-index: 0;
+    background: url(mel.jpg) no-repeat;
+    background-size: 100% 100%;
+    top: 0px;
+    left: 0px; /* fixed to left. Replace it by right if you want.*/
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+     z-index: -1;
+}
+input.abso {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    z-index: -1;
+}
+input {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+</style>
+<script>
+function width(){
+	   return window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||0;
+	}
+	function height(){
+	   return window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||0;
+	}
+	
+</script>
+</head>
+
+<body>
+	
+	
+	<input  id="clients"  opacity:"0.4">
+	
+	<input type="button" id="doCall" onclick="doCall()" value="Call" position: absolute;></input>
+	<br />
+	
+		<video class="bgvid" id="remoteVideo" autoplay  ></video>
+	
+		<video class="abso" id="localVideo" autoplay muted style="width: 15%;"></video>
+		
+	
+	
+
+
+	<script src="js/adapter.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="js/MainHandle.js"></script>
+</body>
+</html>

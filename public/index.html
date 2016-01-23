@@ -1,43 +1,14 @@
+<!DOCTYPE html>
 <html>
-<head>
-<style>
-video.abso {
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    z-index: -1;
-}
-input.abso {
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    z-index: -1;
-}
-input {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* For IE8 and earlier */
-}
-</style>
-</head>
-
 <body>
-	
-	
-	<input  id="clients"  opacity:"0.4">
-	
-	<input type="button" id="doCall" onclick="doCall()" value="Call" position: absolute;></input>
-	<br />
-	
-		<video class="abso" id="remoteVideo" autoplay style="width: 100%; height:auto"></video>
-	
-		<video class="abso" id="localVideo" autoplay muted style="width: 30%;"></video>
-		
-	
-	
+
+<form action="handle.html" method="GET"> 
+  Enter name:<br>
+  <input type="text" name="name" value="">  
+ <input type="submit" value="Send">
+</form> 
 
 
-	<script src="js/adapter.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script src="js/MainHandle.js"></script>
+
 </body>
 </html>

@@ -7,38 +7,57 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var port = Number(process.env.PORT || 3700);
 
-server.listen(port, function () {
+server.listen(port, function() {
 	console.log('Updated : Server listening at port %d', port);
 });
 
-//Routing
-app.use('/js',  express.static(__dirname + '/public/js'));
+// Routing
+app.use('/js', express.static(__dirname + '/public/js'));
 app.use('/css', express.static(__dirname + '/public/css'));
 app.use(express.static(__dirname + '/public'));
 
-//Chatroom
+// var clients = 0;
+var usernames = [];
 
-//usernames which are currently connected to the chat
-var clients=0;
-var messages=[];
-io.on('connection', function (socket) {
-	clients++;
-	socket.emit('clients',{clients:clients});
-	socket.broadcast.emit('clients',{clients:clients});
 
-	socket.on('disconnect',function(){
-		clients--;
-		socket.broadcast.emit('clients',{clients:clients});
-	});
-	
+io.on('connection', function(socket) {
+	var isConnected = false;
 
-	socket.on('offer',function(data){
-		socket.broadcast.emit('offer',data);
+	socket.on('disconnect', function() {
+		if (isConnected) {
+			delete usernames[socket.username];
+		}
+		socket.leave(socket.username);
+		socket.clients--;
+		socket.broadcast.to(socket.username).emit('clients', {
+			clients : socket.clients
+		});
+		
 	});
-	socket.on('candidate',function(data){
-		socket.broadcast.emit('candidate',data);
+
+	socket.on('username', function(data) {
+		socket.username = data;
+		socket.join(data);
+		isConnected = true;
+		usernames[socket.clients] = data;
+		var room = io.sockets.adapter.rooms[data];
+		
+		
+		 socket.clients = room.length;
+		socket.emit('clients', {
+			clients : socket.clients
+		});
+		socket.broadcast.to(socket.username).emit('clients', {
+			clients : socket.clients
+		});
 	});
-	socket.on('answer',function(data){
-		socket.broadcast.emit('answer',data);
+	socket.on('offer', function(data) {
+		socket.broadcast.to(socket.username).emit('offer', data);
+	});
+	socket.on('candidate', function(data) {
+		socket.broadcast.to(socket.username).emit('candidate', data);
+	});
+	socket.on('answer', function(data) {
+		socket.broadcast.to(socket.username).emit('answer', data);
 	});
 });

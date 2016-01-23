@@ -1,7 +1,17 @@
-var socket = io().connect('http:192.168.2.8:3720/NIndex');
+var socket = io();
 var clients=0;
 var pc;
 var localStream;
+var userName="";
+function processForm()
+{
+  var parameters = location.search.substring(1).split("&");
+  var temp = parameters[0].split("=");
+  userName = unescape(temp[1]);
+  socket.emit('username',userName);
+//  alert(l); //Dialog with the text you put on the textbox
+}
+processForm();
 socket.on('offer',function(offer){
 	offer = new SessionDescription(JSON.parse(offer))
 	//pc.addStream(localStream);
