@@ -1,63 +1,110 @@
 <html>
 <head>
+<script type="text/javascript"
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <style>
+.jumbotron {
+	background: grey; /* This is for ie8 and below */
+	opacity: 0.5;
+	
+	
+}
+p {
+    text-align: center;
+    color:white
+}
+
+.glyphicon {
+	font-size: 50px;
+}
+
+.test {
+	width: 80px;
+	height: 80px;
+	background: #009933;
+	padding: 3px;
+	border-radius: 100%;
+	color: white;
+	text-align: center
+}
 
 video.abso {
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    z-index: -1;
-}
-video.bgvid {
-    position: absolute;
-    z-index: 0;
-    background: url(mel.jpg) no-repeat;
-    background-size: 100% 100%;
-    top: 0px;
-    left: 0px; /* fixed to left. Replace it by right if you want.*/
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-     z-index: -1;
-}
-input.abso {
-    position: absolute;
-    left: 0px;
-    top: 10px;
-    z-index: -1;
-}
-input {
-    opacity: 0.4;
-    filter: alpha(opacity=40); /* For IE8 and earlier */
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	z-index: -1;
 }
 
+video.bgvid {
+	position: absolute;
+	z-index: 0;
+	background: url(mel.jpg) no-repeat;
+	background-size: 100% 100%;
+	top: 0px;
+	left: 0px; /* fixed to left. Replace it by right if you want.*/
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	z-index: -1;
+}
+
+input.abso {
+	position: absolute;
+	left: 0px;
+	top: 10px;
+	z-index: -1;
+}
+
+input {
+	opacity: 0.4;
+	filter: alpha(opacity = 40); /* For IE8 and earlier */
+}
 </style>
 <script>
-function width(){
-	   return window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth||0;
+	function width() {
+		return window.innerWidth || document.documentElement.clientWidth
+				|| document.body.clientWidth || 0;
 	}
-	function height(){
-	   return window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight||0;
+	function height() {
+		return window.innerHeight || document.documentElement.clientHeight
+				|| document.body.clientHeight || 0;
 	}
-	
 </script>
 </head>
 
 <body>
-	
-	
-	<input  id="clients"  opacity:"0.4">
-	
-	<input type="button" id="doCall" onclick="doCall()" value="Call" position: absolute;></input>
+
+	<div class="waitNotice">
+		<div class="jumbotron">
+
+			<p>Waiting for someone else to join</p>
+		</div>
+
+	</div>
+	<input id="clients" opacity:"0.4" hidden="true">
+	<div class="doCallbk">
+		<div class='test' style="position: fixed; top: 485px; left: 35px">
+			<span class="glyphicon glyphicon-earphone" id="doCall"
+				onclick="doCall()" value="Call"
+				style="position: fixed; top: 500px; left: 50px"></span>
+		</div>
+	</div>
+	<!-- <input type="button"  position: absolute;></input> -->
 	<br />
-	
-		<video class="bgvid" id="remoteVideo" autoplay  ></video>
-	
-		<video class="abso" id="localVideo" autoplay muted style="width: 15%;"></video>
-		
-	
-	
+
+	<video class="bgvid" id="remoteVideo" autoplay></video>
+
+	<video class="abso" id="localVideo" autoplay muted style="width: 15%;"></video>
+
+
+
 
 
 	<script src="js/adapter.js"></script>

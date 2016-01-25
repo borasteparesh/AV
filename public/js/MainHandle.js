@@ -9,8 +9,10 @@ function processForm()
   var temp = parameters[0].split("=");
   userName = unescape(temp[1]);
   socket.emit('username',userName);
+  document.getElementById("localVideo").className = "bgvid";
 //  alert(l); //Dialog with the text you put on the textbox
 }
+
 processForm();
 socket.on('offer',function(offer){
 	offer = new SessionDescription(JSON.parse(offer))
@@ -22,18 +24,36 @@ socket.on('offer',function(offer){
 			socket.emit('answer', JSON.stringify(pc.localDescription));
 		}, errorHandler);
 	}, errorHandler,mediaConstraints);
-	
+	if(clients==2){
+		document.getElementById("localVideo").className = "abso";
+		$( ".doCallbk" ).hide();
+		$(".waitNotice").hide();
+	}
 
 });
 socket.on('clients',function(data){
 	clients=data.clients;
 	document.getElementById('clients').value=clients;
+	if(clients==1){
+		document.getElementById("localVideo").className = "bgvid";
+		$( ".doCallbk" ).hide();
+		$(".waitNotice").show();
+	}
+	if(clients==2){
+		$(".waitNotice").hide();
+		$( ".doCallbk" ).show();
+	}
+	
 });
+
 socket.on('answer',function(data){
 	console.log('ans received');
 	//pc.addStream(localStream);
 	pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(data)));
-	
+	if(clients==2){
+		document.getElementById("localVideo").className = "abso";
+		$( ".doCallbk" ).hide();
+	}
 
 });
 socket.on('candidate',function(data){

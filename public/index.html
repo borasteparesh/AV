@@ -1,14 +1,78 @@
+
 <!DOCTYPE html>
 <html>
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0
+}
+
+.container-fluid {
+	height: 100%;
+	display: table;
+	width: 100%;
+	padding: 0;
+}
+
+.row-fluid {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.centering {
+	float: none;
+	margin: 0 auto;
+}
+
+body {
+	background: #ebebe0 !important;
+}
+</style>
+</head>
+<div id="holder">
+    <header>.....</header>
+    <div id="body">....</div>
+    <footer>....</footer>
+</div>
 <body>
 
-<form action="handle.html" method="GET"> 
-  Enter name:<br>
-  <input type="text" name="name" value="">  
- <input type="submit" value="Send">
-</form> 
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="centering text-center">
+				<div class="container">
 
 
+					<h2>Let's get started</h2>
+					<form class="form-inline" action="handle.html" method="GET">
+						<div class="form-group">
+
+							<input type="text" class="form-control" name="name"
+								id="exampleInputName2" placeholder="Name">
+						</div>
+
+						<input class="btn btn-default" type="submit" value="Send"
+							id="submit">
+					</form>
+
+
+
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 </body>
 </html>
